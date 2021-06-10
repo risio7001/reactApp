@@ -1,0 +1,11 @@
+.headerStyle{
+    width: 100%;
+    height: 52px;
+    background-color: rgba(255, 0, 0, 0);
+    position: absolute;
+    z-index: 2;
+    transition: 0.5s;
+}
+.headerStyle:hover{
+    background-color: rgba(255, 0, 0, 1);
+}
