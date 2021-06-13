@@ -6,26 +6,26 @@ import './mainPage.css';
 function MainPage() {
     const [changeW, setChangeW] = useState("100%");
     const [changeH, setChangeH] = useState("100%");
-    const [textOpacity, setTextOpacity]= useState("");
+    const [changeView, setChangeView]= useState(false);
     const [scroll, setScroll] = useState();
     const [opacityStart, setOpacityStart] = useState("");
-    const [size, setSize] = useState();
+    // const [size, setSize] = useState();
 
-    function reSize() {
-        if (window.innerWidth <= 1000) {
-            setSize(true);
-        }
-        else {
-            setSize(false);
-        }
-    }
-    useEffect(() => {
-        window.addEventListener('resize', reSize)
-        return () => { window.removeEventListener('resize', reSize); }
-    }, [reSize]);
+    // function reSize() {
+    //     if (window.innerWidth <= 1000) {
+    //         setSize(true);
+    //     }
+    //     else {
+    //         setSize(false);
+    //     }
+    // }
+    // useEffect(() => {
+    //     window.addEventListener('resize', reSize)
+    //     return () => { window.removeEventListener('resize', reSize); }
+    // }, [reSize]);
 
     const handleScroll = () => {
-        console.log();
+        setChangeView(true);
         setChangeW(window.innerWidth);
         setChangeH(window.innerHeight);
         setScroll(window.scrollY);
@@ -39,15 +39,11 @@ function MainPage() {
     }, [handleScroll]);
 
     return <>
-        {size ?
-            <div>모바일 화면이다</div>
-
-            :
             <div style={{ position: "absolute", zIndex: "1" }}>
                 <div style={{ width: "100vw", height: (window.innerHeight * 2), display: "flex", justifyContent: "center", margin: "0px" }}>
                     <div style={{
-                        position: "sticky", top: "0px", width: ((changeW * 1.2) - (scroll)), height: (changeW * 1.2) - (scroll / 2),
-                        transition: "0.3s", backgroundColor: "grey", opacity: -(scroll - (changeH * 2) * 0.7)
+                        position: "sticky", top: "0px", width:changeView? ((changeW * 1.2) - (scroll)) : "100vw", height:changeView? (changeW * 1.2) - (scroll / 2) : "100vh",
+                        transition: "0.2s", backgroundColor: "grey", opacity: -(scroll - (changeH * 2) * 0.7)
                     }}>
                     </div>
                 </div>
@@ -66,7 +62,6 @@ function MainPage() {
                     <p>The HP Pavilion g6-1d46dx was a decent mainstream laptop in its day, and you could replace it with something very similar. There have been lots of changes at the low end of the windows market, with touch-screen tablets and 2-in-1s, and at the high-end, with super-thin laptops with high-resolution screens, like the latest Dell XPS 13 and Microsoft’s new Surface laptop. But 15.6in laptops have not changed much, and they still sell by the truckload. Today’s mainstream laptops are thinner than they used to be – your HP g6 is 1.4in thick – and cheaper. However, the standard specification remains much the same. Your current laptop, for example, has 4GB of memory, a 500GB hard drive, a 1366 x 768-pixel screen and Microsoft Windows. That’s still the most common specification. Some 15.6in laptops now have touch screens, but those are optional. You’re probably not going to use a 15.6in laptop as a tablet, so you’d be better off spending the extra cash on an external Bluetooth or USB mouse. One thing that has changed is that three brands now dominate Windows PC sales in the USA, where you live. In the fourth quarter of last year, according to Gartner’s market research, HP had 30% of the whole PC market (including Apple), with Dell on 25% and Lenovo on 14%. Acer and Asus had about 4% each. There’s been a lot of consolidation in a declining market, which means non-specialist (and non-Apple) buyers rarely look beyond the top five suppliers. Both HP and Dell sell PCs from their online stores, so you can look at those for special offers. If you buy online, both companies offer reasonably-priced support contracts that you won’t get from a retailer. I am based in the UK, so I’m not very familiar with the American retail market, and I don’t know if you live within range of any particular stores. I’m therefore going to restrict my links to Amazon.com. However, you can search for alternative sources. The processor is usually the most expensive part of a mainstream 15.6in laptop and has the greatest impact on both price and performance.</p>
                 </article>
             </div>
-        }
 
     </>
 }

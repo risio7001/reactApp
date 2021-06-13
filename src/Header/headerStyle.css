@@ -3,9 +3,48 @@
     height: 52px;
     background-color: rgba(255, 0, 0, 0);
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     transition: 0.5s;
 }
 .headerStyle:hover{
-    background-color: rgba(255, 0, 0, 1);
+    background-color: rgb(95, 93, 93)
+}
+.moreView{
+    float: left;
+    width: 100px;
+    height: 52px;
+    background-color: rgb(95, 93, 93, 0);
+    position: relative;
+}
+.moreView2{
+    width: 80vw;
+    height: 0px;
+    background-color: white;
+    position: absolute;
+    z-index: 4;
+    margin-top: 52px;
+}
+.moreView0:hover .moreView2{
+    height: 300px;
+}
+
+.moreView0:hover .text{
+    opacity: 1;
+}
+
+.moreView0{
+    width: fit-content;
+    height: fit-content;
+}
+.text{
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.rightHeader{
+    float: right;
+    width: 100px;
+    height: 52px;
+    background-color: rgb(95, 93, 93, 0);
+    position: relative;
 }
