@@ -3,6 +3,9 @@ import './App.css';
 import MainPage from './Contents/mainPage'
 import Header from './Header/header'
 import { isMobile, isBrowser } from 'react-device-detect';
+import Login from './Contents/login'
+import { BrowserRouter, Route } from 'react-router-dom'
+
 function App() {
   // const [size, setSize] = useState();
   // useEffect(()=>{
@@ -26,12 +29,20 @@ function App() {
   // useEffect(() => {     // 사이즈가 바뀔때마다 사이즈를 찾는부분
   //   window.addEventListener('resize', reSize)
   //   return () => { window.removeEventListener('resize', reSize); }
+
   // }, [reSize]);
 
   return (
     <div className="App">
-          <Header />
-          <MainPage />
+          <BrowserRouter>
+            <Header />
+              <Route exact path="/">
+                <MainPage />
+              </Route>
+              <Route exact path="/Login">
+                <Login />
+              </Route>
+          </BrowserRouter>
     </div>
   );
 }

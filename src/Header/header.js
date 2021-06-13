@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Header/headerStyle.css'
 import {text} from '../TextContents/totalText'
+import { Link } from 'react-router-dom';
 
 function Header(){
     const [num, setNum] = useState();
@@ -59,20 +60,33 @@ function Header(){
     return <>
             <div className="headerStyle" >
             {/* onMouseOver={() => setContentText(text)} */}
-            <div className="moreView0" onMouseLeave={()=>setContentText("")}>
-                {headerText.map((text, idx)=>(
-                    <div className="moreView" onMouseEnter={()=>setContentText(text.content)} >
-                        <p>{text.title}</p>
-                    </div>
-                ))}
+            
+            <div className="leftHeader">
+            <Link to="/">
+            <div className="logo">
+                <p>LOGO</p>
+            </div>
+            </Link>
+                <div className="moreView0" onMouseLeave={() => setContentText("")}>
+                    {headerText.map((text, idx) => (
+                        <div className="moreView" onMouseEnter={() => setContentText(text.content)} >
+                            <p>{text.title}</p>
+                        </div>
+                    ))}
 
-                <div className="moreView2">
-                    <p className="text">{contentText}</p>
+                    <div className="moreView2">
+                        <p className="text">{contentText}</p>
+                    </div>
                 </div>
             </div>
-            <div className="rightHeader">
+            
+
+            <Link to="/Login">
+                <div className="rightHeader">
                     <p>로그인</p>
-            </div>
+
+                </div>
+            </Link>
         </div>
     </>
 }

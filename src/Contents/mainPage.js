@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import img1 from '../Image/1600831.jpg'
 import './mainPage.css';
+import video1 from '../Image/Network - 12716.mp4';
 
 
 function MainPage() {
-    const [changeW, setChangeW] = useState("100%");
-    const [changeH, setChangeH] = useState("100%");
+    const [changeW, setChangeW] = useState(window.innerWidth);
+    const [changeH, setChangeH] = useState(window.innerHeight);
     const [changeView, setChangeView]= useState(false);
     const [scroll, setScroll] = useState();
     const [opacityStart, setOpacityStart] = useState("");
@@ -29,6 +30,7 @@ function MainPage() {
         setChangeW(window.innerWidth);
         setChangeH(window.innerHeight);
         setScroll(window.scrollY);
+        console.log(changeW);
         setOpacityStart(`${((changeH * 2) * (2 / 3)) / (scroll * 2)}`); // 최상단 이미지 투명도
     }
     useEffect(() => {                             // 현재 스크롤값 구하고 스크롤값이 변할때마다 값 수정.
@@ -39,15 +41,17 @@ function MainPage() {
     }, [handleScroll]);
 
     return <>
-            <div style={{ position: "absolute", zIndex: "1" }}>
-                <div style={{ width: "100vw", height: (window.innerHeight * 2), display: "flex", justifyContent: "center", margin: "0px" }}>
+            <div style={{ position: "absolute", zIndex: "1"}}>
+                <div style={{ width: "100vw", height: (window.innerHeight)*1.5, display: "flex", justifyContent: "center", margin: "0px", overflowX:"hidden"  }}>
+                    {/* <div style={{position:"sticky", top:"0px" , width:(changeW*1.2)-scroll, height:(changeH*1.2)-(scroll/2), opacity: -(scroll - (changeH * 2) * 0.7)}}> */}
                     <div style={{
-                        position: "sticky", top: "0px", width:changeView? ((changeW * 1.2) - (scroll)) : "100vw", height:changeView? (changeW * 1.2) - (scroll / 2) : "100vh",
+                        position: "sticky", top: "0px", width:changeView? ((changeW*1.2) - (scroll)): "100vw", height:changeView? (changeW * 1.2) - (scroll / 2) : "100vh",
                         transition: "0.2s", backgroundColor: "grey", opacity: -(scroll - (changeH * 2) * 0.7)
                     }}>
+                        <video src={video1} muted autoPlay loop style={{width:"100%", height:"100%", objectFit:"fill"}}></video>
                     </div>
                 </div>
-                <div style={{ marginTop: "45vh", float: "left", transition: "0.4s", position: "absolute", zIndex: "4", width: "400px", height: "400px", backgroundColor: "black", opacity: ((changeH / 9) / scroll) - 1 }}></div>
+                {/* <div style={{ marginTop: "45vh", float: "left", transition: "0.4s", position: "absolute", zIndex: "4", width: "400px", height: "400px", backgroundColor: "black", opacity: ((changeH / 9) / scroll) - 1 }}></div> */}
                 <article style={{ width: "100vw", height: "100vh", transition: "0.7s", opacity: (scroll - ((changeH * 2) * 0.7)) }}>
                     <h1>Google Docs</h1>
                     <p>A Google Docs scam that appears to be widespread began landing in users’ inboxes on Wednesday in what seemed to be a sophisticated phishing or malware attack. The deceptive invitation to edit a Google Doc – the popular app used for writing and sharing files – appeared to be spreading rapidly, with a subject line stating a contact has shared a document on Google Docs with you”. If users click the Open in Docs” button in the email, it takes them to a legitimate Google sign-in screen that asks to continue in Google Docs”. Clicking on that link grants permission to a bogus third-party app to possibly access contacts and email, which could allow the spam to spread to additional contacts. Google has said it is aware of the issue and investigating it. The company encouraged users to report the email as phishing within Gmail. We have taken action to protect users against an email impersonating Google Docs, and have disabled offending accounts,” a spokesperson said in a statement. We’ve removed the fake pages, pushed updates through Safe Browsing, and our abuse team is working to prevent this kind of spoofing from happening again.” The company did not immediately respond to requests for comment on how many people had been affected by the attack and where it may have originated. Numerous journalists have reported receiving the phishing email, including multiple Guardian reporters. One message to the Guardian came from a maryland.gov account associated with law enforcement and was addressed to hhhhhhhhhhhhhhhh@mailinator.com”, and blind-copied the reporter. </p>
